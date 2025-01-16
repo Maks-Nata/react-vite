@@ -6,7 +6,7 @@ import {IUser} from "../models/IUser.ts";
 
 const UsersComponent = () => {
     const [users,setUsers]=useState<IUser[]>([])
-    useEffect(()=>{getAll<IBaceResponseModel & {users:IUser[]}>('/users').then(({users} )=> setUsers(users))},[])
+    useEffect(()=>{getAll<IBaceResponseModel & {users:IUser[]}>().then(({users} )=> setUsers(users))},[])
     return (
         <div>
             {

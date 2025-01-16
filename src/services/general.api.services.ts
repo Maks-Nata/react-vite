@@ -1,2 +1,8 @@
-const  baceURL=import.meta.env.VITE_BASE_URL
-export  const getAll=async<T,> (endpoint:string):Promise<T>=>await fetch(`${baceURL}${endpoint}`).then(res=>res.json())
+
+const  baceURL='https://dummyjson.com'
+
+export const getAll = async <T>(): Promise<T> => {
+    return    await fetch(`${baceURL}/users`).then(res => res.json())
+
+
+}
