@@ -1,16 +1,17 @@
 import {useEffect, useState} from "react";
-import {getAll} from "../services/general.api.services.ts";
 import {IBaceResponseModel} from "../models/IBaceResponseModel.ts";
 import {IUser} from "../models/IUser.ts";
+import {UserComponent} from "./UserComponent.tsx";
+import {getUsers} from "../services/users.api.services.ts";
 
 
 const UsersComponent = () => {
     const [users,setUsers]=useState<IUser[]>([])
-    useEffect(()=>{getAll<IBaceResponseModel & {users:IUser[]}>().then(({users} )=> setUsers(users))},[])
+    useEffect(()=>{getUsers<IBaceResponseModel & {users:IUser[]}>().then(({users} )=> setUsers(users))},[])
     return (
         <div>
             {
-                users.map((user:IUser)=><div key={user.id}>{user.username}</div>)
+                users.map((user:IUser)=><UserComponent key={user.id} user={user}/>)
             }
         </div>
     );
