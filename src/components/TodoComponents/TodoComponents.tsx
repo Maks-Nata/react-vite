@@ -1,20 +1,19 @@
 import {useEffect, useState} from "react";
 import {ITodo} from "../../modeles/ITodo.ts";
 import TodoComponent from "../TodoComponent/TodoComponent.tsx";
+import {getAllTodos} from "../../services/api.services.ts";
+import {ITodosObject} from "../../modeles/ITodosObject.tsx";
 
 
 export const TodoComponents = () => {
-    const[todoComponents,setTodocomponents]=useState<ITodo[]>([])
+    const[todos,setTodocomponents]=useState<ITodo[]>([])
     useEffect(() => {
-        fetch('https://jsonplaceholder.typicode.com/todos ')
-            .then(value => value.json())
-            .then((iTodos: ITodo[]) => {
-                setTodocomponents(iTodos) });
+getAllTodos().then(({todos}:ITodosObject)=>{setTodocomponents(todos)})
     }, [])
     return (
         <div>
             {
-                todoComponents.map(todoComponent=><TodoComponent key={todoComponent.id} item={todoComponent}/>)
+                todos.map(todoComponent=><TodoComponent key={todoComponent.id} item={todoComponent}/>)
             }
         </div>
     );
