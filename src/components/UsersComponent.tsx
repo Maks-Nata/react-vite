@@ -1,23 +1,21 @@
 import {useEffect, useState} from "react";
 import {IUser} from "../models/IUser.ts";
 import {IUsersResponse} from "../models/IUsersResponse.tsx";
-
-
-const UsersComponent = () => {
+export const UsersComponent = () => {
     const [users, setUsers] = useState<IUser[]>([])
     useEffect(() => {
         fetch('https://dummyjson.com/users')
             .then(value => value.json())
             .then(({users}: IUsersResponse) => {
-            setUsers(users)});
+                setUsers(users)
+            });
     }, [])
     return (
         <div>
             {
-users.map((user:IUser)=><UsersComponent/>)
+                users.map((user) => <UsersComponent key={item.id} item={user}/>)
             }
         </div>
     );
 };
 
-export default UsersComponent;
