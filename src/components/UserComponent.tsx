@@ -1,15 +1,20 @@
+
 import {IUser} from "../models/IUser.ts";
-
-
-interface UsersComponentProps {
-    item: IUser
+import {useNavigate} from "react-router";
+import {FC} from "react";
+type Props={
+    user: IUser
 }
-export const UserComponent = ({item}:UsersComponentProps) => {
-    return (
-        <div>
-<h2>{item.firstName}</h2>
-        </div>
-    );
-};
+export const UserComponent:FC<Props>=( {user})=> {
+    const navigation = useNavigate()
+    const onButtonClickNavigate = () => {
 
-export default UserComponent;
+        navigation('/users/'+user.id+'/carts')
+    };
+    return <div className={"m-4"}>{user.username}:{user.email}
+
+        <button className={"border-2"}
+                onClick={onButtonClickNavigate}> click me
+        </button>
+    </div>;
+}
