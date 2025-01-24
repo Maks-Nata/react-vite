@@ -1,9 +1,7 @@
-import {IUserResponseModel} from "../modules/IUserResponseModel.tsx";
+const  baceURL='https://dummyjson.com'
 
-const baceUrl = 'https://dummyjson.com'
-export const UserUrl = {
-    getAllUsers: async (): Promise<IUserResponseModel> => {
-        return await fetch(baceUrl + '/users')
-            .then(value => value.json())
-    }
+export const getUsers = async <T>(): Promise<T> => {
+    return    await fetch(`${baceURL}/users`).then(res => res.json())
+
+
 }
